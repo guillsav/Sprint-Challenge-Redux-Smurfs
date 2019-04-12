@@ -1,7 +1,5 @@
 import {
-  ADD_SMURF_START,
-  ADD_SMURF_SUCCESS,
-  ADD_SMURF_FAILURE,
+  ADD_SMURF,
   GET_SMURF_START,
   GET_SMURF_SUCCESS,
   GET_SMURF_FAILURE,
@@ -22,35 +20,21 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_SMURF_START:
+    case ADD_SMURF:
+      const newSmurf = {
+        id: Date.now(),
+        name: action.payload.name,
+        age: action.payload.age,
+        height: action.payload.height
+      };
       return {
         ...state,
-        smurfs: state.smurfs,
+        smurfs: [...state.smurfs, newSmurf],
         addingSmurf: true,
         fetchingSmurfs: false,
         updatingSmurf: false,
         deletingSmurf: false,
         error: null
-      };
-    case ADD_SMURF_SUCCESS:
-      return {
-        ...state,
-        smurfs: [...state.smurfs, action.payload],
-        addingSmurf: false,
-        fetchingSmurfs: false,
-        updatingSmurf: false,
-        deletingSmurf: false,
-        error: null
-      };
-    case ADD_SMURF_FAILURE:
-      return {
-        ...state,
-        smurfs: state.smurfs,
-        addingSmurf: false,
-        fetchingSmurfs: false,
-        updatingSmurf: false,
-        deletingSmurf: false,
-        error: action.payload
       };
     case GET_SMURF_START:
       return {
@@ -70,7 +54,7 @@ const reducer = (state = initialState, action) => {
         deletingSmurf: false,
         error: null
       };
-    case GET_SMURF_SUCCESS:
+    case GET_SMURF_FAILURE:
       return {
         ...state,
         smurfs: [],
