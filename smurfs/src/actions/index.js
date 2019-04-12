@@ -13,3 +13,8 @@
    U - updateSmurf
    D - deleteSmurf
 */
+
+export const ADD_SMURF = 'ADD_SMURF';
+export const GET_SMURF = 'GET_SMURF';
+export const UPDATE_SMURF = 'UPDATE_SMURF';
+export const DELETE_SMURF = 'DELETE_SMURF';
